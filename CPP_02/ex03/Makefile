@@ -6,7 +6,7 @@
 #    By: nicgonza <nicgonza@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/04 08:19:22 by nicgonza          #+#    #+#              #
-#    Updated: 2024/09/04 08:20:38 by nicgonza         ###   ########.fr        #
+#    Updated: 2024/09/05 12:40:39 by nicgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 RM = rm -f
 
 SRC = main.cpp \
-	Fixed.cpp
+	Fixed.cpp \
+	Point.cpp \
+	bsp.cpp
 
 OBJTS = $(SRC:.cpp=.o)
 
