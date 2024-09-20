@@ -6,7 +6,7 @@
 /*   By: nicgonza <nicgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 15:18:31 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/09/20 15:59:45 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:15:26 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include "ICharacter.hpp"
 
 class AMateria{
 	protected:

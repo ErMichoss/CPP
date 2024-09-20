@@ -6,7 +6,7 @@
 /*   By: nicgonza <nicgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 15:29:28 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/09/20 16:02:10 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:16:06 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define ICE_HPP
 
 # include "AMateria.hpp"
+# include "Materia.hpp"
 # include "ICharacter.hpp"
 
-class Ice: public AMateria{
+class Ice: public Materia{
 	public:
 		Ice();
 		Ice(Ice const& copy);
