@@ -46,10 +46,6 @@ AAnimal& AAnimal::operator = (const AAnimal& copy){
 	return *this;
 }
 
-void	AAnimal::makeSound(){
-	std::cout << this->type << ": Animal Sound" << std::endl;
-}
-
 std::string AAnimal::getType(){
 	return this->type;
 }

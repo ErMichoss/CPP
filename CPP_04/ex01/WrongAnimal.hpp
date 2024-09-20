@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicgonza <nicgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/19 13:21:26 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/09/20 14:58:41 by nicgonza         ###   ########.fr       */
+/*   Created: 2024/09/19 16:35:26 by nicgonza          #+#    #+#             */
+/*   Updated: 2024/09/19 17:04:09 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
-# include <string>
-# include <iostream>
+# include "Animal.hpp"
 
-class AAnimal{
+class WrongAnimal{
 	protected:
-		//Atributes
 		std::string type;
 	public:
-		//Constructors
-		AAnimal();
-		AAnimal(const AAnimal& copy);
-		
-		//Destructor
-		virtual ~AAnimal();
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal& copy);
+		virtual ~WrongAnimal();
 
-		//operator overload
-		AAnimal& operator = (const AAnimal &copy);
+		WrongAnimal& operator = (const WrongAnimal& copy);
 
-		//Getter
+		void makeSound();
 		std::string getType();
-
-		//member functions
-		virtual void makeSound();
 };
 
 #endif

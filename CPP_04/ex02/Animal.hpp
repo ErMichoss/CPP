@@ -6,7 +6,7 @@
 /*   By: nicgonza <nicgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:21:26 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/09/20 14:58:41 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:58:44 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ class AAnimal{
 	protected:
 		//Atributes
 		std::string type;
-	public:
+		
 		//Constructors
 		AAnimal();
 		AAnimal(const AAnimal& copy);
 		
 		//Destructor
 		virtual ~AAnimal();
+	public:
 
 		//operator overload
 		AAnimal& operator = (const AAnimal &copy);
@@ -35,7 +36,7 @@ class AAnimal{
 		std::string getType();
 
 		//member functions
-		virtual void makeSound();
+		virtual void makeSound() = 0;
 };
 
 #endif

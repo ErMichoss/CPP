@@ -6,7 +6,7 @@
 /*   By: nicgonza <nicgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:21:14 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/09/20 14:58:41 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/09/19 16:51:52 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * Default constructor.
  */
-AAnimal::AAnimal(){
+Animal::Animal(){
 	std::cout << "The Animal default constructor has been called" << std::endl;
 	this->type = "default";
 }
@@ -24,7 +24,7 @@ AAnimal::AAnimal(){
  * Copy constructor.
  * @param[in] copy The object it's going to copy.
  */
-AAnimal::AAnimal(const AAnimal& copy){
+Animal::Animal(const Animal& copy){
 	std::cout << "The Animal copy constructor has been called" << std::endl;
 	*this = copy;
 }
@@ -32,7 +32,7 @@ AAnimal::AAnimal(const AAnimal& copy){
 /**
  * The default destructor.
  */
-AAnimal::~AAnimal(){
+Animal::~Animal(){
 	std::cout << "The Animal default destructor has been called" << std::endl;
 }
 
@@ -40,16 +40,16 @@ AAnimal::~AAnimal(){
  * An assigment operator overload
  * @param copy The object it is going to equal it self to.
 */
-AAnimal& AAnimal::operator = (const AAnimal& copy){
+Animal& Animal::operator = (const Animal& copy){
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->type = copy.type;
 	return *this;
 }
 
-void	AAnimal::makeSound(){
+void	Animal::makeSound(){
 	std::cout << this->type << ": Animal Sound" << std::endl;
 }
 
-std::string AAnimal::getType(){
+std::string Animal::getType(){
 	return this->type;
 }

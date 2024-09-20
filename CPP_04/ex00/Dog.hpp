@@ -6,7 +6,7 @@
 /*   By: nicgonza <nicgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 14:02:43 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/09/19 15:14:21 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:58:41 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "Animal.hpp"
 
-class Dog: public Animal{
+class Dog: public AAnimal{
 	public:
 		//Constructors
 		Dog();
