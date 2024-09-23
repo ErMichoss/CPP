@@ -6,7 +6,7 @@
 /*   By: nicgonza <nicgonza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 15:55:37 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/09/20 16:16:42 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:56:46 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 class Character: public ICharacter{
 	private:
-		Materia inventory[4];
-		std::string const name;
+		AMateria* inventory[4];
+		std::string name;
 	public:
 		Character();
 		Character(std::string const name);
