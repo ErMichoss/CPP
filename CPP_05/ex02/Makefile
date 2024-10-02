@@ -1,4 +1,4 @@
-NAME = AForm
+NAME = forms
 
 CC = c++
 
@@ -8,7 +8,10 @@ RM = rm -f
 
 SRC = main.cpp \
 	Bureaucrat.cpp \
-	Form.cpp
+	ShrubberyCreationForm.cpp \
+	RobotomyRequestForm.cpp \
+	PresidentialPardonForm.cpp \
+	AForm.cpp
 
 OBJTS = $(SRC:.cpp=.o)
 
