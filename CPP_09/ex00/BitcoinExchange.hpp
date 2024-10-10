@@ -1,5 +1,5 @@
 #ifndef BITCOINEXCHANGE_HPP
-# define BITCOINEXCHAGE_HPP
+# define BITCOINEXCHANGE_HPP
 
 # include <map>
 # include <string>

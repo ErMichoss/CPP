@@ -6,7 +6,8 @@ CFLAGS = -Wall -Werror -Wextra -g3 -std=c++98
 
 RM = rm -f
 
-SRC = main.cpp
+SRC = main.cpp \
+	BitcoinExchange.cpp
 
 OBJTS = $(SRC:.cpp=.o)
 
