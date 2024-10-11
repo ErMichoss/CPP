@@ -14,3 +14,11 @@ BitcoinExchange::BitcoinExchange(BitcoinExchange const& copy){
 }
 
 BitcoinExchange::~BitcoinExchange(){}
+
+void BitcoinExchange::addToMap(std::string key, double value){
+	this->dataMap[key] = value;
+}
+
+std::map<std::string, double> BitcoinExchange::getMap(){
+	return this->dataMap;
+}

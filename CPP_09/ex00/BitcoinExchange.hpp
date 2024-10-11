@@ -11,6 +11,9 @@ class BitcoinExchange{
 	BitcoinExchange();
 	BitcoinExchange(BitcoinExchange const& copy);
 	~BitcoinExchange();
+	
+	void addToMap(std::string key, double value);
+	std::map<std::string, double> getMap(); 
 
 	BitcoinExchange& operator = (BitcoinExchange const& copy);
 };
