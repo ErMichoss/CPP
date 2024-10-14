@@ -17,7 +17,7 @@ int checkDate(std::string line){
 	day = day.substr(0, 2);
 	std::string date = line.substr(0, 10);
 
-	if (year <= "2001" || year >= "2022"){
+	if (year <= "2009"){
 		std::cerr << "Error: bad input => " << date << std::endl;
 		return 1;
 	} else if (month <= "01" || month >= "12"){
@@ -61,6 +61,8 @@ int checkDate(std::string line){
 				return 1;
 			}
             break;
+		default:
+			return 1;
     	}
 	}
 	return 0;
@@ -71,67 +73,45 @@ int	checkAmount(std::string line){
 	for (int i = line.length(); i > 0 && line.c_str()[i] != '|'; i--){
 		size++;
 	}
-	if (line.substr(line.length() - size + 2, line.length()) > "2147483647" && line.substr(line.length() - size + 2, line.length()).length() >= 10){
-		std::cerr << "Error: too large a number" << std::endl;
-		return 1;
-	}
 	double btc = atof(line.substr(line.length() - size + 1, line.length()).c_str());
 	if (btc < 0){
 		std::cerr << "Error: not a positive number" << std::endl;
+		return 1;
+	} else if (btc > 1000){
+		std::cerr << "Error: too large a number" << std::endl;
 		return 1;
 	}
 	return 0;
 }
 
-void parseValue(std::string line, BitcoinExchange& btcMap){
+void parseValue(std::string line, BitcoinExchange dataMap){
 	if (checkDate(line) == 1){ return ; }
 	else if (checkAmount(line) == 1) {return ;}
 	else{
-		std::string date;
-		date = line.substr(0, 10);
-			int size = 0;
-			for (int i = line.length(); i > 0 && line.c_str()[i] != '|'; i--){
-				size++;
+		std::string date = line.substr(0, 10);
+		int size = 0;
+		for (int i = line.length(); i > 0 && line.c_str()[i] != '|'; i--){
+			size++;
+		}
+		double btc = atof(line.substr(line.length() - size + 1, line.length()).c_str());
+
+		std::map<std::string, double> dataRef = dataMap.getMap();
+		std::string lastDate = dataRef.begin()->first;
+		double lastBtc = dataRef.begin()->second;
+		for (std::map<std::string, double>::iterator i = dataRef.begin(); i != dataRef.end(); i++){
+			if (i->first == date){
+				std::cout << date << " => " << btc << " = " << btc * i->second << std::endl;
+				return ;
+			}else{
+				lastDate = i->first;
+				lastBtc = i->second;
 			}
-			int btc = atoi(line.substr(line.length() - size + 1, line.length()).c_str());
-		btcMap.addToMap(date, btc);
+			if (i->first > date){
+				std::cout << date << " => " << btc << " = " << btc * lastBtc << std::endl;
+				return ;
+			}
+		}
 	}
-}
-
-void compareData(std::ifstream& data, BitcoinExchange btcMap){
-	std::string line;
-	BitcoinExchange dataMap;
-	while (std::getline(data, line)){
-		int i;
-		for (i = 0; line.c_str()[i] != ','; i++){}
-		std::string date = line.substr(0, i);
-		float value = atof(line.substr(i + 1, line.length()).c_str());
-		dataMap.addToMap(date, value);
-	}
-
-	const std::map<std::string, double>& btcMapRef = btcMap.getMap();
-	// const std::map<std::string, double>& dataMapRef = dataMap.getMap();
-
-	for (std::map<std::string, double>::const_iterator btcIt = btcMapRef.begin(); btcIt != btcMapRef.end(); btcIt++) {
-		std::cout << btcIt->first << " => " << btcIt->second << std::endl;
-	}
-
-    // for (std::map<std::string, double>::const_iterator btcIt = btcMapRef.begin(); btcIt != btcMapRef.end(); ++btcIt) {
-    //     const std::string& btcDate = btcIt->first;
-    //     double btcValue = btcIt->second;
-    //     std::map<std::string, double>::const_iterator closest = dataMapRef.end();
-    //     for (std::map<std::string, double>::const_iterator dataIt = dataMapRef.begin(); dataIt != dataMapRef.end(); ++dataIt) {
-    //         if (dataIt->first < btcDate) {
-    //             closest = dataIt;
-    //         } else {
-    //             break;
-    //         }
-    //     }
-
-    //     if (closest != dataMapRef.end()) {
-    //         std::cout << btcDate << " => " << btcValue << " = " << btcValue * closest->second << std::endl;
-    //     }
-    // }
 }
 
 int main(int argc, char *argv[]){
@@ -141,16 +121,23 @@ int main(int argc, char *argv[]){
 
 		std::ifstream data("./cpp_09/data.csv");
 		if (!data.is_open()){ std::cerr << "Can not open the data.csv file" << std::endl; return 1; }
+		std::string dataLine;
+		std::getline(data, dataLine);
+		BitcoinExchange dataMap;
+		while (std::getline(data, dataLine)){
+			std::string date = dataLine.substr(0, 10);
+			double value = atof(dataLine.substr(12, dataLine.length()).c_str());
+			dataMap.addToMap(date, value);
+		}
+		
 
 		std::string line;
 		std::getline(infile, line);
 		if (line != "date | value"){ std::cerr << "The header does not have the required format" << std::endl; return 1; }
 
-		BitcoinExchange btcMap;
 		while (std::getline(infile, line)){
-			parseValue(line, btcMap);
+			parseValue(line, dataMap);
 		}
-		compareData(data, btcMap);
 	} else {
 		std::cout << "This program only accepts one argument" << std::endl;
 	}
