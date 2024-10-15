@@ -2,6 +2,7 @@
 # define RPN_HPP
 
 # include <stack>
+# include <iostream>
 
 class RPN{
 	private:
@@ -15,6 +16,10 @@ class RPN{
 
 		void addToStack(int n);
 		std::stack<int> getStack();
+		void sum();
+		void res();
+		void mult();
+		int div();
 };
 
 #endif

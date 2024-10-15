@@ -10,22 +10,46 @@ int main(int argc, char *argv[]){
 
 		for (int i = 0; input.c_str()[i] != '\0'; i++){
 			if (std::isdigit(input.c_str()[i])){
-				if (!(input.length() > i) && input.c_str()[i + 1] == ' '){
-					std::cerr << "Error: argument not followed by space" << std::endl;
+				rpn.addToStack(std::atoi(input.substr(i, 1).c_str()));
+			}else if (input.c_str()[i] == '+'){
+				if (rpn.getStack().size() < 2){
+					std::cerr << "Error: not enough numbers in the stack" << std::endl;
 					return 1;
 				}
-				rpn.addToStack(std::atoi(input.substr(i, i).c_str()));
-			}else if (input.c_str()[i] == '+'){
-				//suma
+				rpn.sum();
 			}else if (input.c_str()[i] == '-'){
-				//resta
+				if (rpn.getStack().size() < 2){
+					std::cerr << "Error: not enough numbers in the stack" << std::endl;
+					return 1;
+				}
+				rpn.res();
 			}else if (input.c_str()[i] == '/'){
-				//division
+				if (rpn.getStack().size() < 2){
+					std::cerr << "Error: not enough numbers in the stack" << std::endl;
+					return 1;
+				}
+				if (rpn.div() == 1){
+					return 1;
+				}
 			}else if (input.c_str()[i] == '*'){
-				//multiplicacion
+				if (rpn.getStack().size() < 2){
+					std::cerr << "Error: not enough numbers in the stack" << std::endl;
+					return 1;
+				}
+				rpn.mult();
+			}else if (input.c_str()[i] != ' '){
+				std::cerr << "Error: invalid character" << std::endl;
+				return 1;
 			}
 		}
+		if (rpn.getStack().size() > 1){
+			std::cerr << "Error" << std::endl;
+			return 1;
+		}
+		std::cout << rpn.getStack().top() << std::endl;
 	}else{
 		std::cerr << "Invalid number of arguments" << std::endl;
+		return 1;
 	}
+	return 0;
 }
